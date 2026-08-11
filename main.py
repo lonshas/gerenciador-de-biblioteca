@@ -2,7 +2,7 @@ import csv
 import os
 os.system("cls")
 
-estrutura_de_livro = ['titulo','autor','ano de publicacao','código','status']
+estrutura_de_livro = ['titulo','autor','ano','codigo','status']
 
 def cadastro_de_livro():
     titulo = input("Digite o título do livro: ")
@@ -17,8 +17,8 @@ def cadastro_de_livro():
 
         livro = {'titulo': titulo,
                 'autor': autor,
-                'ano de publicacao': ano,
-                'código': codigo,
+                'ano': ano,
+                'codigo': codigo,
                 'status': status
                 }
         
@@ -35,13 +35,13 @@ def listagem_de_livros():
         return
     with open('livros.csv', 'r', newline='') as listagem:
         leitor = csv.DictReader(listagem)
-    for livro in leitor:
-        print(f"Título: {livro['titulo']}")
-        print(f"Autor: {livro['autor']}")
-        print(f"Ano de publicacao: {livro['ano']}")
-        print(f"Codigo: {livro['codigo']}")
-        print(f"Título: {livro['status']}")
-        print("-------------------------------------------------")
+        for livro in leitor:
+            print(f"Titulo: {livro['titulo']}")
+            print(f"Autor: {livro['autor']}")
+            print(f"Ano de publicacao: {livro['ano']}")
+            print(f"Codigo: {livro['codigo']}")
+            print(f"Status: {livro['status']}")
+            print("-------------------------------------------------")
 
 
     
