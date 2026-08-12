@@ -14,7 +14,7 @@
 - Lista: Ao chamar a função de listagem de livros, escreva como deseja que os livros sejam ordenados. Caso sua resposta seja inválida, o sistema vai listar por ordem de cadastro automaticamente.
 - Sair: Para sair do sistema, aperte 6 no menu principal.
 
-##Requisitos técnicos:
+## Requisitos técnicos:
 - Aplicação de conhecimento simples de Python.
 - Aplicação de conhecimento simples de arquivos CSV.
 - Habilidades de resolução de problemas.
