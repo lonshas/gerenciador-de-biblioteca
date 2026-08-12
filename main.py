@@ -42,8 +42,8 @@ def emprestimo_de_livro():
         leitor = csv.DictReader(arquivo)
         for livro in leitor:
             livros.append(livro)
-        if livro['codigo'] == codigo_busca:
-            livros_encontrados.append(livro)
+            if livro['codigo'] == codigo_busca:
+                livros_encontrados.append(livro)
     
     if len(livros_encontrados) == 0:
         print("Nenhum livro disponivel encontrado com esse código.")
@@ -51,8 +51,9 @@ def emprestimo_de_livro():
     
     print("\nLivros encontrados:")
     print("---------------------------------------------")
-    for i, livro in enumerate(livros_encontrados, start=1):
-        print(f"{i} - {livro['titulo']}")
+    i = len(livros_encontrados)
+    for i, livro in enumerate(livros_encontrados, start=0):
+        print(f"{i+1} - Titulo: {livro['titulo']}")
         print(f" Autor: {livro['autor']}")
         print(f" Ano: {livro['ano']}")
         print(f" Status: {livro['status']}")
@@ -96,8 +97,8 @@ def devolucao_de_livro():
         leitor = csv.DictReader(arquivo)
         for livro in leitor:
             livros.append(livro)
-        if livro['codigo'] == codigo_busca:
-            livros_encontrados.append(livro)
+            if livro['codigo'] == codigo_busca:
+                livros_encontrados.append(livro)
     
     if len(livros_encontrados) == 0:
         print("Nenhum livro indisponivel encontrado com esse código.")
@@ -153,7 +154,7 @@ def listagem_de_livros():
 
     ordem = input("Deseja ordenar a listagem por título, autor ou ano? (Digite 'titulo', 'autor' ou 'ano'): ")
     if ordem not in ['titulo', 'autor', 'ano']:
-        print("Opção inválida. A listagem será feita na ordem de cadastro.")
+        print("Opção inválida. A listagem será feita na ordem de cadastro.\n")
         ordem = None
 
     if ordem == 'titulo':
