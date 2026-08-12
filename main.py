@@ -34,7 +34,7 @@ def emprestimo_de_livro():
     if not os.path.exists('livros.csv'): 
         print("Nenhum livro cadastrado.") 
         return 
-    codigo_busca = input("Digite o código (ISBN) do livro que deseja emprestar: ")
+    codigo_busca = input("Digite o código (ISBN) do livro que deseja pegar emprestado: ")
     livros = []
     livros_encontrados = []
 
@@ -46,7 +46,7 @@ def emprestimo_de_livro():
             livros_encontrados.append(livro)
     
     if len(livros_encontrados) == 0:
-        print("Nenhum livro encontrado com esse código.")
+        print("Nenhum livro disponivel encontrado com esse código.")
         return
     
     print("\nLivros encontrados:")
@@ -62,7 +62,7 @@ def emprestimo_de_livro():
         livro_escolhido = livros_encontrados[0]
     
     else:
-        escolha = input("Digite o número do livro que deseja emprestar: ")
+        escolha = input("Digite o número do livro que deseja pegar emprestado: ")
         if not escolha.isdigit():
             print("Opção inválida.")
             return
@@ -100,7 +100,7 @@ def devolucao_de_livro():
             livros_encontrados.append(livro)
     
     if len(livros_encontrados) == 0:
-        print("Nenhum livro encontrado com esse código.")
+        print("Nenhum livro indisponivel encontrado com esse código.")
         return
     
     print("\nLivros encontrados:")
@@ -181,6 +181,33 @@ def listagem_de_livros():
             print(f"Status: {livro['status']}")
             print("-------------------------------------------------")
 
+def buscar_livro():
+    if not os.path.exists('livros.csv'):
+        print("Nenhum livro cadastrado.")
+        return
+    
+    termo_busca = input("Digite o título ou autor do livro que deseja buscar: ")
+    livros_encontrados = []
+
+    with open('livros.csv', 'r', newline='') as busca:
+        leitor = csv.DictReader(busca)
+        for livro in leitor:
+            if termo_busca.lower() in livro['titulo'].lower() or termo_busca.lower() in livro['autor'].lower():
+                livros_encontrados.append(livro)
+    
+    if len(livros_encontrados) == 0:
+        print("Nenhum livro encontrado com esse título ou autor.")
+        return
+    
+    print("\nLivros encontrados:")
+    print("---------------------------------------------")
+    for i, livro in enumerate(livros_encontrados, start=1):
+        print(f"{i} - {livro['titulo']}")
+        print(f" Autor: {livro['autor']}")
+        print(f" Ano: {livro['ano']}")
+        print(f" Status: {livro['status']}")
+        print("---------------------------------------------")
+
 while True:
     print("----------Gerenciador da Biblioteca----------\n--------------------MENU---------------------\n")
     escolha_menu = input("1- CADASTRAR LIVRO\n2- EMPRÉSTIMO DE LIVRO\n3- DEVOLUÇÃO DE LIVRO\n4- LISTAR LIVROS\n5- BUSCAR LIVRO\n6- SAIR\nEscreva o comando aqui: ")
@@ -193,7 +220,7 @@ while True:
     elif escolha_menu =="4":
         listagem_de_livros()
     elif escolha_menu =="5":
-        pass
+        buscar_livro()
     elif escolha_menu =="6":
         break
     else:
